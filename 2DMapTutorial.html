@@ -1,5 +1,6 @@
 <html>
   <head>
+<!--Created from the tutorial on https://developers.arcgis.com/javascript/latest/display-a-map/ -->
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>ArcGIS Maps SDK for JavaScript Tutorials: Display a map</title>
@@ -15,12 +16,28 @@
       }
     </style>
     
+ <!--Referencing style sheet and API/JS library-->
     <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
     <script src="https://js.arcgis.com/4.25/"></script>
     
      <script>
+ <!--Adding an AMD module-->
       require(["esri/config", "esri/Map", "esri/views/MapView"], function(esriConfig, Map, MapView) {
 
+ <!--Adding a basemap-->
+      esriConfig.apiKey = "AAPK79b5acd851ee4f58ad06545051f4f0e8A6bXaRbni6A8va_2HoYIgp2yboRCxwWAmQjP6dOBDuTuP6p2gwWIPRwVDAF-OHTa";
+      const map = new Map({
+      basemap: "arcgis-topographic" // Basemap layer service
+        });
+        
+<!--Creating a map view-->
+          const view = new MapView({
+          map: map,
+          center: [-118.805, 34.027], // Longitude, latitude
+          zoom: 13, // Zoom level
+          container: "viewDiv" // Div element
+        });
+        
       });
     </script>
     
