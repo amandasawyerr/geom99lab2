@@ -1,1 +1,41 @@
 
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GeoJSON Map</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> 
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-WWHYHIKY-do4kquMy9Z4wQaQx51AuE&callback=initMap"
+      defer>
+    </script>
+    <script src="map.geojson"></script>
+    <style>
+        #map {
+        height: 80%;
+        }
+        html,
+        body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #87CEEB;
+        }
+        h1 {
+        color: #191970;
+        font-size: 40px;
+        text-align: center;
+        }
+        p {
+        color: #2F4F4F;
+        font-size: 30px;
+        margin-left: 10px;
+        }
+    </style>
+  </head>
+  <body>
+    <h1> GeoJSON Map </h1>
+    <p> Map of a tortoise over Galapagos Islands using GeoJSON drawing tool. </p>
+    <div id="map"></div>
+
+  </body>
+</html>
