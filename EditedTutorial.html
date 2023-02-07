@@ -34,7 +34,7 @@
     const view = new MapView({
       container: "viewDiv",
       map: map,
-      center: [44.341, -78.743], //Longitude, latitude
+      center: [44.341, -78.743], 
       zoom: 10
     });
 
@@ -71,8 +71,8 @@
       results.forEach(function(result){
         view.graphics.add(
           new Graphic({
-            attributes: result.attributes,  // Data attributes returned
-            geometry: result.location, // Point returned
+            attributes: result.attributes,  
+            geometry: result.location, 
             symbol: {
              type: "simple-marker",
              color: "#FA66CB",
