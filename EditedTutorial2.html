@@ -17,108 +17,47 @@
       font-size: 40px;
       text-align: center;
       }
-      p {
-      color: #FF69B4;
-      font-size: 30px;
-      margin-left: 20px;
-      }      
     }
 </style>
-  
   <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
   <script src="https://js.arcgis.com/4.25/"></script>
-  
-  <script>
 
+  <script>
   require([
     "esri/config",
     "esri/Map",
     "esri/views/MapView",
 
-    "esri/Graphic",
-    "esri/layers/GraphicsLayer"
+    "esri/layers/FeatureLayer"
 
-    ], function(esriConfig,Map, MapView, Graphic, GraphicsLayer) {
+  ], function(esriConfig,Map, MapView, FeatureLayer) {
 
   esriConfig.apiKey = "AAPK79b5acd851ee4f58ad06545051f4f0e8A6bXaRbni6A8va_2HoYIgp2yboRCxwWAmQjP6dOBDuTuP6p2gwWIPRwVDAF-OHTa";
 
   const map = new Map({
-    basemap: "arcgis-newspaper" 
+    basemap: "arcgis-newspaper"
   });
 
   const view = new MapView({
+    container: "viewDiv",
     map: map,
     center: [-78.743,44.341],
-    zoom: 11,
-    container: "viewDiv"
- });
+    zoom: 13
+  });
 
- const graphicsLayer = new GraphicsLayer();
- map.add(graphicsLayer);
+//Adding feature layer 
+  const VDayLayer = new FeatureLayer({
+    url: "https://services1.arcgis.com/pMeXRvgWClLJZr3s/arcgis/rest/services/Valentines_ExportFeatures/FeatureServer/0"
+  });
 
- const point1 = {
-    type: "point",
-    longitude: -78.7401772,
-    latitude: 44.3549219
- };
- 
-  const point2 = {
-    type: "point",
-    longitude: -78.7419022,
-    latitude: 44.3546915
- };
-    
-  const point3 = {
-    type: "point",
-    longitude: -78.7325879,
-    latitude: 44.3465391
- };
-    
-  const point4 = {
-    type: "point",
-    longitude: -79.8652724,
-    latitude: 43.5085428
- };
-    
-  const point5 = {
-    type: "point",
-    longitude: -79.8969127,
-    latitude: 43.5171487
- };
-    
- const simpleMarkerSymbol = {
-    type: "simple-marker",
-    color: [255, 20, 147], 
-    outline: {
-        color: [255, 245, 238], 
-        width: 2
-    }
- };
+  map.add(VDayLayer);
 
- const popupTemplate = {
-    title: "{Name}",
-    content: "{Description}"
- }
- const attributes = {
-    Name: "Flower Shop",
-    Description: "XXX"
- }
-
- const pointnGraphic = new Graphic({
-    geometry: point,
-    symbol: simpleMarkerSymbol,
-    attributes: attributes,
-    popupTemplate: popupTemplate
-
- });
-  graphicsLayer.add(pointGraphic);
- });
+  });
 </script>
-    
+
 </head>
 <body>
-  <h1> Flower Shops Near Fleming </h1>
-  <p> Flower Shops Near Fleming Frost Campus for Valentines Day. </p>
+  <h1> Happy Valentines Day </h1>
   <div id="viewDiv"></div>
 </body>
 </html>
