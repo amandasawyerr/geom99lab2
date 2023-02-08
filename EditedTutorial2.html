@@ -2,58 +2,123 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>ArcGIS Maps SDK for JavaScript Tutorials: Display a Web Map</title>
+  <title>Flower Shops Near Fleming</title>
+  <header>Flower Shops Near Fleming Frost Campus</header>
   <style>
     html, body, #viewDiv {
       padding: 0;
       margin: 0;
-      height: 100%;
+      height: 80%;
       width: 100%;
+      background-color: #FFE4E1;
+      }
+      h1 {
+      color: #B22222;
+      font-size: 40px;
+      text-align: center;
+      }
+      p {
+      color: #FF69B4;
+      font-size: 30px;
+      margin-left: 20px;
+      }      
     }
-  </style>
+</style>
+  
   <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
   <script src="https://js.arcgis.com/4.25/"></script>
-
+  
   <script>
-    require([
-      "esri/config",
-      "esri/Map",
-      "esri/WebMap",
-      "esri/views/MapView",
-      "esri/widgets/ScaleBar",
-      "esri/widgets/Legend"
-    ], function(esriConfig, WebMap, MapView, ScaleBar, Legend) {
 
-//    esriConfig.apiKey = "AAPK79b5acd851ee4f58ad06545051f4f0e8A6bXaRbni6A8va_2HoYIgp2yboRCxwWAmQjP6dOBDuTuP6p2gwWIPRwVDAF-OHTa";
+  require([
+    "esri/config",
+    "esri/Map",
+    "esri/views/MapView",
 
-      const webmap = new WebMap({
-        portalItem: {
-          id: "41281c51f9de45edaf1c8ed44bb10e30"
-        }
-      });
+    "esri/Graphic",
+    "esri/layers/GraphicsLayer"
 
-      const view = new MapView({
-        container: "viewDiv",
+    ], function(esriConfig,Map, MapView, Graphic, GraphicsLayer) {
 
-        map: webmap
+  esriConfig.apiKey = "AAPK79b5acd851ee4f58ad06545051f4f0e8A6bXaRbni6A8va_2HoYIgp2yboRCxwWAmQjP6dOBDuTuP6p2gwWIPRwVDAF-OHTa";
 
-      });
-
-      const scalebar = new ScaleBar({
-        view: view
-      });
-
-      view.ui.add(scalebar, "bottom-left");
-
-    const legend = new Legend ({
-        view: view
-      });
-      view.ui.add(legend, "top-right");
-
+  const map = new Map({
+    basemap: "arcgis-newspaper" 
   });
-  </script>
+
+  const view = new MapView({
+    map: map,
+    center: [-78.743,44.341],
+    zoom: 11,
+    container: "viewDiv"
+ });
+
+ const graphicsLayer = new GraphicsLayer();
+ map.add(graphicsLayer);
+
+ const point1 = {
+    type: "point",
+    longitude: -78.7401772,
+    latitude: 44.3549219
+ };
+ 
+  const point2 = {
+    type: "point",
+    longitude: -78.7419022,
+    latitude: 44.3546915
+ };
+    
+  const point3 = {
+    type: "point",
+    longitude: -78.7325879,
+    latitude: 44.3465391
+ };
+    
+  const point4 = {
+    type: "point",
+    longitude: -79.8652724,
+    latitude: 43.5085428
+ };
+    
+  const point5 = {
+    type: "point",
+    longitude: -79.8969127,
+    latitude: 43.5171487
+ };
+    
+ const simpleMarkerSymbol = {
+    type: "simple-marker",
+    color: [255, 20, 147], 
+    outline: {
+        color: [255, 245, 238], 
+        width: 2
+    }
+ };
+
+ const popupTemplate = {
+    title: "{Name}",
+    content: "{Description}"
+ }
+ const attributes = {
+    Name: "Flower Shop",
+    Description: "XXX"
+ }
+
+ const pointnGraphic = new Graphic({
+    geometry: point,
+    symbol: simpleMarkerSymbol,
+    attributes: attributes,
+    popupTemplate: popupTemplate
+
+ });
+  graphicsLayer.add(pointGraphic);
+ });
+</script>
+    
 </head>
 <body>
+  <h1> Flower Shops Near Fleming </h1>
+  <p> Flower Shops Near Fleming Frost Campus for Valentines Day. </p>
   <div id="viewDiv"></div>
 </body>
 </html>
